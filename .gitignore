@@ -1,0 +1,24 @@
+# Arquivos e diretórios específicos do Node.js
+/node_modules
+/dist
+
+# Arquivos de log
+*.log
+npm-debug.log*
+
+
+# Arquivos de cache
+.npm
+
+
+# Arquivos de ambiente
+.env
+.env.test
+.env.production
+
+# Arquivos de configuração do IDE
+.vscode/
+
+# Arquivos de configuração do TypeScript
+/*.tscache
+/*.tsbuildinfo
