@@ -1,23 +1,30 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
+  JoinColumn,
+} from 'typeorm';
 import { Address } from '../address/address.entity';
 
 @Entity()
 export class Person {
   @PrimaryGeneratedColumn()
-  id: number;
+  Id: number;
 
   @Column({ length: 500 })
-  name: string;
+  Name: string;
 
   @Column({ length: 500 })
-  sex: string;
+  Sex: string;
 
   @Column({ type: 'date' })
-  birthDate: Date;
+  BirthDate: Date;
 
   @Column({ length: 500 })
-  maritalStatus: string;
+  MaritalStatus: string;
 
-  @OneToMany(() => Address, (address) => address.person)
-  addresses: Address[];
+  @OneToMany(() => Address, (address) => address.Person, { eager: true })
+  @JoinColumn()
+  Addresses: Address[];
 }

@@ -1,26 +1,35 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
 import { Person } from '../person/person.entity';
 
 @Entity()
 export class Address {
   @PrimaryGeneratedColumn()
-  id: number;
+  Id: number;
 
   @Column({ length: 500 })
-  street: string;
+  Street: string;
 
   @Column({ length: 500 })
-  city: string;
+  City: string;
 
   @Column({ length: 500 })
-  state: string;
+  State: string;
 
   @Column({ length: 10 })
-  zipCode: string;
+  ZipCode: string;
 
   @Column({ length: 500 })
-  country: string;
+  Country: string;
 
-  @ManyToOne(() => Person, (person) => person.addresses)
-  person: Person;
+  @ManyToOne(() => Person, (person) => person.Addresses, {
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn()
+  Person: Person;
 }
