@@ -1,7 +1,8 @@
-import { Module } from '@nestjs/common';
+import { Module, ValidationPipe } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { join } from 'path';
+import { APP_PIPE } from '@nestjs/core';
 
 @Module({
   imports: [
@@ -21,11 +22,16 @@ import { join } from 'path';
         database: configService.get('DB_NAME') || 'ibs',
         entities: [join(process.cwd(), 'dist/**/*.entity{.ts,.js}')],
         synchronize: true,
-        //autoLoadEntities: true
+        autoLoadEntities: true,
       }),
     }),
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    {
+      provide: APP_PIPE,
+      useClass: ValidationPipe,
+    },
+  ],
 })
 export class AppModule {}
