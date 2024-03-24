@@ -6,6 +6,7 @@ import {
   Param,
   ParseIntPipe,
   Put,
+  Delete,
 } from '@nestjs/common';
 import { PersonService } from './person.service';
 import { CreatePersonDto } from './dto/create-person.dto';
@@ -59,5 +60,10 @@ export class PersonController {
       addressId,
       updateAddressDto,
     );
+  }
+
+  @Delete(':id')
+  delete(@Param('id', ParseIntPipe) id: number) {
+    return this.personService.deletePerson(id);
   }
 }
