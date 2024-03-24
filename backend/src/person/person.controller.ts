@@ -66,4 +66,12 @@ export class PersonController {
   delete(@Param('id', ParseIntPipe) id: number) {
     return this.personService.deletePerson(id);
   }
+
+  @Delete(':personId/address/:addressId')
+  async deleteAddress(
+    @Param('personId', ParseIntPipe) personId: number,
+    @Param('addressId', ParseIntPipe) addressId: number,
+  ) {
+    return this.personService.deleteAddress(personId, addressId);
+  }
 }

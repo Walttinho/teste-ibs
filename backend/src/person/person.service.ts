@@ -181,4 +181,23 @@ export class PersonService {
     }
     await this.personRepository.remove(person);
   }
+
+  async deleteAddress(personId: number, addressId: number): Promise<void> {
+    const person = await this.personRepository.findOne({
+      where: { Id: personId },
+      relations: ['Addresses'],
+    });
+    if (!person) {
+      throw new NotFoundException(`Person with ID ${personId} not found`);
+    }
+
+    const address = person.Addresses.find(
+      (address) => address.Id === addressId,
+    );
+    if (!address) {
+      throw new NotFoundException(`Address with ID ${addressId} not found`);
+    }
+
+    await this.addressRepository.remove(address);
+  }
 }
