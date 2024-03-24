@@ -5,10 +5,12 @@ import {
   Get,
   Param,
   ParseIntPipe,
+  Put,
 } from '@nestjs/common';
 import { PersonService } from './person.service';
 import { CreatePersonDto } from './dto/create-person.dto';
 import { CreateAddressDto } from './dto/create-address.dto';
+import { UpdatePersonDto } from './dto/update-person.dto';
 
 @Controller('person')
 export class PersonController {
@@ -35,5 +37,13 @@ export class PersonController {
     @Body() createAddressDto: CreateAddressDto,
   ) {
     return this.personService.addAddress(id, createAddressDto);
+  }
+
+  @Put(':id')
+  async update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updatePersonDto: UpdatePersonDto,
+  ) {
+    return this.personService.updatePerson(id, updatePersonDto);
   }
 }
