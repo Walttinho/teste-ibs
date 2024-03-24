@@ -33,7 +33,7 @@ export class PersonController {
     return this.personService.findById(personId);
   }
 
-  @Post(':personId/address')
+  @Post(':personId')
   addAddress(
     @Param('personId', ParseIntPipe) personId: number,
     @Body() createAddressDto: CreateAddressDto,
@@ -49,7 +49,7 @@ export class PersonController {
     return this.personService.updatePerson(personId, updatePersonDto);
   }
 
-  @Put(':personId/address/:addressId')
+  @Put(':personId/:addressId')
   async updateAddress(
     @Param('personId', ParseIntPipe) personId: number,
     @Param('addressId', ParseIntPipe) addressId: number,
@@ -67,7 +67,7 @@ export class PersonController {
     return this.personService.deletePerson(personId);
   }
 
-  @Delete(':personId/address/:addressId')
+  @Delete(':personId/:addressId')
   async deleteAddress(
     @Param('personId', ParseIntPipe) personId: number,
     @Param('addressId', ParseIntPipe) addressId: number,
