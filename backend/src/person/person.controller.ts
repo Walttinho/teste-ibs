@@ -28,25 +28,25 @@ export class PersonController {
     return this.personService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.personService.findById(id);
+  @Get(':personId')
+  findOne(@Param('personId', ParseIntPipe) personId: number) {
+    return this.personService.findById(personId);
   }
 
-  @Post(':id/address')
+  @Post(':personId/address')
   addAddress(
-    @Param('id', ParseIntPipe) id: number,
+    @Param('personId', ParseIntPipe) personId: number,
     @Body() createAddressDto: CreateAddressDto,
   ) {
-    return this.personService.addAddress(id, createAddressDto);
+    return this.personService.addAddress(personId, createAddressDto);
   }
 
-  @Put(':id')
+  @Put(':personId')
   async update(
-    @Param('id', ParseIntPipe) id: number,
+    @Param('personId', ParseIntPipe) personId: number,
     @Body() updatePersonDto: UpdatePersonDto,
   ) {
-    return this.personService.updatePerson(id, updatePersonDto);
+    return this.personService.updatePerson(personId, updatePersonDto);
   }
 
   @Put(':personId/address/:addressId')
@@ -62,9 +62,9 @@ export class PersonController {
     );
   }
 
-  @Delete(':id')
-  delete(@Param('id', ParseIntPipe) id: number) {
-    return this.personService.deletePerson(id);
+  @Delete(':personId')
+  delete(@Param('personId', ParseIntPipe) personId: number) {
+    return this.personService.deletePerson(personId);
   }
 
   @Delete(':personId/address/:addressId')

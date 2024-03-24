@@ -70,27 +70,27 @@ export class PersonService {
     return await this.personRepository.find({ relations: ['Addresses'] });
   }
 
-  async findById(id: number): Promise<Person> {
+  async findById(personId: number): Promise<Person> {
     const person = await this.personRepository.findOne({
-      where: { Id: id },
+      where: { Id: personId },
       relations: ['Addresses'],
     });
     if (!person) {
-      throw new NotFoundException(`Person with ID ${id} not found`);
+      throw new NotFoundException(`Person with ID ${personId} not found`);
     }
     return person;
   }
 
   async addAddress(
-    id: number,
+    personId: number,
     createAddressDto: CreateAddressDto,
   ): Promise<Person> {
     const person = await this.personRepository.findOne({
-      where: { Id: id },
+      where: { Id: personId },
       relations: ['Addresses'],
     });
     if (!person) {
-      throw new NotFoundException(`Person with ID ${id} not found`);
+      throw new NotFoundException(`Person with ID ${personId} not found`);
     }
 
     const address = this.addressRepository.create({
@@ -103,15 +103,15 @@ export class PersonService {
   }
 
   async updatePerson(
-    id: number,
+    personId: number,
     updatePersonDto: UpdatePersonDto,
   ): Promise<Person> {
     const person = await this.personRepository.findOne({
-      where: { Id: id },
+      where: { Id: personId },
       relations: ['Addresses'],
     });
     if (!person) {
-      throw new NotFoundException(`Person with ID ${id} not found`);
+      throw new NotFoundException(`Person with ID ${personId} not found`);
     }
 
     if (updatePersonDto.Name) {
@@ -171,13 +171,13 @@ export class PersonService {
     return person;
   }
 
-  async deletePerson(id: number): Promise<void> {
+  async deletePerson(personId: number): Promise<void> {
     const person = await this.personRepository.findOne({
-      where: { Id: id },
+      where: { Id: personId },
       relations: ['Addresses'],
     });
     if (!person) {
-      throw new NotFoundException(`Person with ID ${id} not found`);
+      throw new NotFoundException(`Person with ID ${personId} not found`);
     }
     await this.personRepository.remove(person);
   }
