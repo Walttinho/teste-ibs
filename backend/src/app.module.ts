@@ -4,7 +4,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { join } from 'path';
 import { APP_PIPE } from '@nestjs/core';
 import { PersonModule } from './person/person.module';
-
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -28,6 +28,7 @@ import { PersonModule } from './person/person.module';
       }),
     }),
     PersonModule,
+    UserModule,
   ],
   controllers: [],
   providers: [
