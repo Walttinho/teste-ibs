@@ -3,6 +3,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { join } from 'path';
 import { APP_PIPE } from '@nestjs/core';
+import { PersonModule } from './person/person.module';
+
 
 @Module({
   imports: [
@@ -25,6 +27,7 @@ import { APP_PIPE } from '@nestjs/core';
         autoLoadEntities: true,
       }),
     }),
+    PersonModule,
   ],
   controllers: [],
   providers: [
