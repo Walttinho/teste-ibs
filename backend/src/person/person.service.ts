@@ -4,6 +4,7 @@ import { Person } from './entities/person.entity';
 import { CreatePersonDto } from './dto/create-person.dto';
 import { Address } from 'src/person/entities/address.entity';
 import { Repository } from 'typeorm';
+import { CreateAddressDto } from './dto/create-address.dto';
 @Injectable()
 export class PersonService {
   constructor(
@@ -75,6 +76,27 @@ export class PersonService {
     if (!person) {
       throw new NotFoundException(`Person with ID ${id} not found`);
     }
+    return person;
+  }
+
+  async addAddress(
+    id: number,
+    createAddressDto: CreateAddressDto,
+  ): Promise<Person> {
+    const person = await this.personRepository.findOne({
+      where: { Id: id },
+      relations: ['Addresses'],
+    });
+    if (!person) {
+      throw new NotFoundException(`Person with ID ${id} not found`);
+    }
+
+    const address = this.addressRepository.create({
+      ...createAddressDto,
+      Person: person,
+    });
+    await this.addressRepository.save(address);
+
     return person;
   }
 }

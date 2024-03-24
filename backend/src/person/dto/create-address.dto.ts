@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, Length, IsNumber } from 'class-validator';
+import { IsNotEmpty, IsString, Length } from 'class-validator';
 
 export class CreateAddressDto {
   @IsNotEmpty()
@@ -25,8 +25,4 @@ export class CreateAddressDto {
   @IsString()
   @Length(1, 500)
   Country: string;
-
-  @IsNotEmpty()
-  @IsNumber()
-  PersonId: number;
 }

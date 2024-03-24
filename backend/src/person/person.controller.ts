@@ -8,6 +8,7 @@ import {
 } from '@nestjs/common';
 import { PersonService } from './person.service';
 import { CreatePersonDto } from './dto/create-person.dto';
+import { CreateAddressDto } from './dto/create-address.dto';
 
 @Controller('person')
 export class PersonController {
@@ -26,5 +27,13 @@ export class PersonController {
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.personService.findById(id);
+  }
+
+  @Post(':id/address')
+  addAddress(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() createAddressDto: CreateAddressDto,
+  ) {
+    return this.personService.addAddress(id, createAddressDto);
   }
 }
