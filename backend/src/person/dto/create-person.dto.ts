@@ -7,7 +7,7 @@ import {
   MaxLength,
 } from 'class-validator';
 import { Type } from 'class-transformer';
-import { CreateAddressDto } from 'src/address/dto/create-address.dto';
+import { CreateAddressDto } from 'src/person/dto/create-address.dto';
 
 export enum SexEnum {
   MALE = 'M',
