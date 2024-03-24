@@ -7,6 +7,7 @@ import {
   MaxLength,
 } from 'class-validator';
 import { Type } from 'class-transformer';
+import { CreateAddressDto } from 'src/address/dto/create-address.dto';
 
 export enum SexEnum {
   MALE = 'M',
@@ -48,4 +49,8 @@ export class CreatePersonDto {
   @MinLength(3)
   @MaxLength(500)
   public MaritalStatus: string;
+
+  @IsNotEmpty()
+  @Type(() => CreateAddressDto)
+  public Address: CreateAddressDto;
 }
