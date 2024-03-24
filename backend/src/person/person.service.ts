@@ -62,4 +62,8 @@ export class PersonService {
 
     return newPerson;
   }
+
+  async findAll(): Promise<Person[]> {
+    return await this.personRepository.find({ relations: ['Addresses'] });
+  }
 }
