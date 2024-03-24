@@ -11,6 +11,7 @@ import { PersonService } from './person.service';
 import { CreatePersonDto } from './dto/create-person.dto';
 import { CreateAddressDto } from './dto/create-address.dto';
 import { UpdatePersonDto } from './dto/update-person.dto';
+import { UpdateAddressDto } from './dto/update-address.dto';
 
 @Controller('person')
 export class PersonController {
@@ -45,5 +46,18 @@ export class PersonController {
     @Body() updatePersonDto: UpdatePersonDto,
   ) {
     return this.personService.updatePerson(id, updatePersonDto);
+  }
+
+  @Put(':personId/address/:addressId')
+  async updateAddress(
+    @Param('personId', ParseIntPipe) personId: number,
+    @Param('addressId', ParseIntPipe) addressId: number,
+    @Body() updateAddressDto: UpdateAddressDto,
+  ) {
+    return this.personService.updateAddress(
+      personId,
+      addressId,
+      updateAddressDto,
+    );
   }
 }
