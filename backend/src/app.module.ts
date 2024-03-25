@@ -5,6 +5,7 @@ import { join } from 'path';
 import { APP_PIPE } from '@nestjs/core';
 import { PersonModule } from './person/person.module';
 import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { UserModule } from './user/user.module';
     }),
     PersonModule,
     UserModule,
+    AuthModule,
   ],
   controllers: [],
   providers: [
