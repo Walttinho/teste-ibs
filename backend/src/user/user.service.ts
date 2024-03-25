@@ -38,4 +38,12 @@ export class UserService {
   async findAll(): Promise<User[]> {
     return await this.userRepository.find();
   }
+
+  async findById(userId: number): Promise<User> {
+    const user = await this.userRepository.findOne({ where: { id: userId } });
+    if (!user) {
+      throw new NotFoundException(`User with ID ${userId} not found`);
+    }
+    return user;
+  }
 }
