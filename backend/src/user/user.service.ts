@@ -34,4 +34,8 @@ export class UserService {
 
     return savedUser;
   }
+
+  async findAll(): Promise<User[]> {
+    return await this.userRepository.find();
+  }
 }
